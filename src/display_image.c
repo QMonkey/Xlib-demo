@@ -32,7 +32,7 @@ XImage *CreateTrueColorImage(Display *display, Visual *visual, unsigned char *im
             p++;
         }
     }
-    return XCreateImage(display, visual, 24, ZPixmap, 0, image32, width, height, 32, 0);
+    return XCreateImage(display, visual, DefaultDepth(display,DefaultScreen(display)), ZPixmap, 0, image32, width, height, 32, 0);
 }
 
 void processEvent(Display *display, Window window, XImage *ximage, int width, int height)
