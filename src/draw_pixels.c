@@ -1,7 +1,6 @@
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include <unistd.h>
-#include <malloc.h>
 #include <stdio.h>
 
 int main(int argc,char **argv)
@@ -16,10 +15,9 @@ int main(int argc,char **argv)
 	XImage *img = XCreateImage(display,visual,DefaultDepth(display,screen_num),ZPixmap,
 		0,data,256,256,32,0);
 	int count = 256 * 256;
-	for (int i = 0; i < count; ++i)
-	{
-		XAddPixel(img,(long)i);
-	}
+	for (int x = 0; x < 256 ; x++)
+		for (int y = 0; y < 256; y++)
+			XPutPixel(img,x,y,0x00ff00);
 	fprintf(stdout,"end\n");
 
 	Window win = XCreateSimpleWindow(display,root,50,50,256,256,1,0,0);
